@@ -2,6 +2,7 @@ package com.springboot.employeepayroll.controller;
 
 import com.springboot.employeepayroll.dto.EmployeeDTO;
 import com.springboot.employeepayroll.dto.ResponseDTO;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import com.springboot.employeepayroll.service.EmployeePayrollService;
@@ -29,7 +30,7 @@ public class EmployeePayrollController {
 
     // POST
     @PostMapping("/create")
-    public ResponseDTO createEmployee(@RequestBody EmployeeDTO empDTO) {
+    public ResponseDTO createEmployee(@Valid @RequestBody EmployeeDTO empDTO) {
         return new ResponseDTO("Created", service.addEmployee(empDTO));
     }
 
@@ -37,7 +38,7 @@ public class EmployeePayrollController {
     @PutMapping("/update/{id}")
     public ResponseDTO updateEmployee(
             @PathVariable int id,
-            @RequestBody EmployeeDTO empDTO) {
+            @Valid @RequestBody EmployeeDTO empDTO) {
 
         return new ResponseDTO(
                 "Updated",
